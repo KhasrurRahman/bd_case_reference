@@ -49,25 +49,31 @@
             <div class="form-group-sm">
 
                 <div class="col-md-3">
-                    <select name="category" class="form-control js-example-basic-multiple">
-                        <option selected="selected">--1st select division--</option>
-                        @foreach ($categories as $category => $value)
-                            <option value="{{ $category }}"> {{ $value }}</option>
-                        @endforeach
-                    </select>
+                    <label>
+                        <select name="category" class="form-control js-example-basic-multiple">
+                            <option selected="selected">--1st select division--</option>
+                            @foreach ($categories as $category => $value)
+                                <option value="{{ $category }}"> {{ $value }}</option>
+                            @endforeach
+                        </select>
+                    </label>
                 </div>
                 <div class="col-md-3">
-                    <select name="civil" class="form-control js-example-basic-multiple">
-                        <option selected="selected">--1st select division--</option>
+                    <label>
+                        <select name="civil" class="form-control js-example-basic-multiple">
+                            <option selected="selected">--1st select division--</option>
 
-                    </select>
+                        </select>
+                    </label>
                 </div>
 
                 <div class="col-md-3">
-                    <select name="act" class="form-control js-example-basic-multiple">
-                        <option selected="selected">--1st select civil/criminal--</option>
+                    <label>
+                        <select name="act" class="form-control js-example-basic-multiple">
+                            <option selected="selected">--1st select civil/criminal--</option>
 
-                    </select>
+                        </select>
+                    </label>
                 </div>
 
                 <div class="col-md-2"><span id="loader"><i class="fa fa-spinner fa-3x fa-spin"></i></span></div>
