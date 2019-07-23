@@ -7,7 +7,7 @@
 @section('content')
     <div class="container-fluid">
         <div class="block-header">
-            <a class="btn btn-primary waves-effect" href="{{route('admin.section.create')}}"><i class="material-icons">add</i>Add New Section/Article/Rules</a>
+            <a class="btn btn-primary waves-effect" href="{{route('admin.post.create')}}"><i class="material-icons">add</i>Add New Post</a>
         </div>
 
         <!-- Exportable Table -->
@@ -16,8 +16,8 @@
                 <div class="card">
                     <div class="header">
                         <h2>
-                            Section/Article/Rules..
-                            <span class="badge bg-blue">{{$section->count()}}</span>
+                            All Post
+                            <span class="badge bg-blue">{{$post->count()}}</span>
                         </h2>
 
                     </div>
@@ -27,10 +27,13 @@
                                 <thead>
                                 <tr>
                                     <th>Id</th>
-                                    <th>Name</th>
+                                    <th>Title</th>
                                     <th>Division</th>
                                     <th>Civil</th>
-                                    <th>Act</th>
+                                    <th>act</th>
+                                    <th>section</th>
+                                    <th>Ref</th>
+                                    <th>Body</th>
                                     <th>Action</th>
 
                                 </tr>
@@ -38,31 +41,37 @@
                                 <tfoot>
                                 <tr>
                                     <th>Id</th>
-                                    <th>Name</th>
+                                    <th>Title</th>
                                     <th>Division</th>
                                     <th>Civil</th>
-                                    <th>Act</th>
+                                    <th>act</th>
+                                    <th>section</th>
+                                    <th>Ref</th>
+                                    <th>Body</th>
                                     <th>Action</th>
 
                                 </tr>
                                 </tfoot>
                                 <tbody>
-                                @foreach($section as $key=>$sections)
+                                @foreach($post as $key=>$posts)
                                     <tr>
                                         <td>{{$key+1}}</td>
-                                        <td>{{$sections->name}}</td>
-                                        <td>{{$sections->act->civil->category->name}}</td>
-                                        <td>{{$sections->act->civil->civil_name}}</td>
-                                        <td>{{$sections->act->name}}</td>
+                                        <td>{!! html_entity_decode(str_limit($posts->title,40))!!}</td>
+                                        <td>{{$posts->category}}</td>
+                                        <td>{{$posts->civil}}</td>
+                                        <td>{{$posts->act}}</td>
+                                        <td>{{$posts->section}}</td>
+                                        <td>{{$posts->reference}}</td>
+                                        <td>{!! html_entity_decode(str_limit($posts->body,50)) !!}</td>
                                         <td class="text-center">
-                                            <a href="{{route('admin.section.edit',$sections->id)}}" class="btn btn-info waves-effect">
+                                            <a href="{{route('admin.post.edit',$posts->id)}}" class="btn btn-info waves-effect">
                                                 <i class="material-icons">edit</i>
                                             </a>
 
-                                            <button class="btn btn-danger waves-effect" type="button" onclick="deletetag({{$sections->id}})">
+                                            <button class="btn btn-danger waves-effect" type="button" onclick="deletetag({{$posts->id}})">
                                                 <i class="material-icons">delete</i>
                                             </button>
-                                            <form id="delete-form-{{$sections->id}}" action="{{route('admin.section.destroy',$sections->id)}}" method="post" style="display: none">
+                                            <form id="delete-form-{{$posts->id}}" action="{{route('admin.post.destroy',$posts->id)}}" method="post" style="display: none">
                                                 @csrf
                                                 @method('DELETE')
 

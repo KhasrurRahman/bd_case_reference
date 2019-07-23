@@ -41,7 +41,7 @@ class MainCategoryController extends Controller
     public function store(Request $request)
     {
         $this->validate($request,[
-            'name'=>'required|unique:categories,name'
+            'name'=>'required'
         ]);
         $category = new category();
         $category -> name = $request -> name;
@@ -88,7 +88,7 @@ class MainCategoryController extends Controller
         ]);
         $category = category::find($id);
         $category->name = $request->name;
-        $category->save();
+        $category->update();
 
         Toastr::success('Main Category Update Successfuly','Sucsess');
         return redirect()->route('admin.maincategory.index');

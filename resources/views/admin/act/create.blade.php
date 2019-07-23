@@ -1,7 +1,8 @@
 @extends('layouts.backend.app')
 @section('title','Create Act/law')
 @push('css')
-    <link href="{{ asset('public/assets/backend/plugins/bootstrap-select/css/bootstrap-select.css') }}" rel="stylesheet" />
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.6-rc.0/css/select2.min.css" rel="stylesheet" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-3-typeahead/4.0.1/bootstrap3-typeahead.min.js"></script>
 @endpush
 @section('content')
     <div class="container-fluid">
@@ -28,39 +29,46 @@
                         </div>
                     </div>
                 </div>
-                <div class="col-lg-4 col-md-12 col-sm-12 col-xs-12">
-                    <div class="card">
-                        <div class="header">
-                            <h2>
-                                Select Civil,Criminal.. category
-                            </h2>
-                        </div>
-                        <div class="body">
 
-                            <div class="form-group form-float">
-                                <div class="form-line" {{ $errors->has('civil') ? 'focused error' : '' }}>
-                                    <label for="civil">select Category</label>
 
-                                    <select name="civil_id" class="form-control show-tick selectpicker" data-live-search="true" multiple data-max-options="1">
-                                        @foreach($civil as $civils)
-                                            <option value="{{ $civils->id }}">
-                                                {{ $civils->civil_name }}
-                                            </option>
-                                        @endforeach
-                                    </select>
+                <section class="bottom-search-form">
 
-                                </div>
-                            </div>
 
-                            <br>
-                            <a type="button" class="btn btn-danger m-t-15 waves-effect" href="{{route('admin.act.index')}}">Back</a>
-                            <button type="submit" class="btn btn-primary m-t-15 waves-effect">Save</button>
+                            @php
+                                $categories = DB::table('categories')->pluck("name","id");
+                            @endphp
 
-                        </div>
-                    </div>
-                </div>
+
+                            <label class="col-md-6 col-sm-6">
+                                <select class="form-control js-example-basic-multiple" name="category">
+                                    <option disabled="true" selected="true">select Division</option>
+                                    @foreach ($categories as $category => $value)
+                                        <option value="{{ $category }}"> {{ $value }}</option>
+                                    @endforeach
+                                </select>
+                            </label>
+
+                            <label class="col-md-6 col-sm-6">
+                                <select class="form-control js-example-basic-multiple" name="civil_id">
+                                    <option>select Civil</option>
+
+                                </select>
+                            </label>
+
+
+
+
+
+
+
+                </section>
+
+
+
             </div>
-
+            <br>
+            <a type="button" class="btn btn-danger m-t-15 waves-effect" href="{{route('admin.act.index')}}">Back</a>
+            <button type="submit" class="btn btn-primary m-t-15 waves-effect">Save</button>
         </form>
 
     </div>
@@ -70,5 +78,76 @@
 
 
 @push('js')
-    <script src="{{asset('public/assets/backend/plugins/bootstrap-select/js/bootstrap-select.js')}}"></script>
+    <script type="text/javascript">
+        $(document).ready(function() {
+
+            $('select[name="category"]').on('change', function(){
+                var categoryId = $(this).val();
+
+                if(categoryId) {
+                    $.ajax({
+                        url: '/co/civillist/'+categoryId,
+                        type:"GET",
+                        dataType:"json",
+                        beforeSend: function(){
+                            $('#loader').css("visibility", "visible");
+
+
+                        },
+
+                        success:function(data) {
+
+                            $('select[name="civil_id"]').empty();
+                            $('select[name="civil_id"]').append('<option value="0" disabled="true" selected="true">Select Civil</option>');
+                            $.each(data, function(key, value){
+
+                                $('select[name="civil_id"]').append('<option value="'+ value.id +'">' + value.civil_name + '</option>');
+                                console.log(value);
+
+                            });
+                        },
+                        complete: function(){
+                            $('#loader').css("visibility", "hidden");
+
+
+
+                        }
+                    });
+                } else {
+                    $('select[name="civil_id"]').empty();
+
+                }
+
+            });
+
+
+
+
+
+
+
+
+
+
+
+
+        });
+    </script>
+
+    <script>
+
+
+        $(document).ready(function() {
+            $('.js-example-basic-multiple').select2({tags: true});
+        });
+
+
+    </script>
+
+
+
+
+    {{--<script src="//cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.6.3/js/bootstrap-select.min.js"></script>--}}
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.6-rc.0/js/select2.min.js"></script>
+
 @endpush

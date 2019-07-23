@@ -16,7 +16,7 @@
                 <div class="card">
                     <div class="header">
                         <h2>
-                            Applicate and High Court Division
+                            Appellate Division or High Court Division
                             <span class="badge bg-blue">{{$allcategory->count()}}</span>
                         </h2>
 
@@ -48,7 +48,7 @@
                                     <tr>
                                         <td>{{$key+1}}</td>
                                         <td>{{$cat->name}}</td>
-                                        <td>{{$cat->created_at}}</td>
+                                        <td>{{$cat->created_at->toFormattedDateString()}}</td>
                                         <td>{{$cat->updated_at}}</td>
                                         <td class="text-center">
                                             <a href="{{route('admin.maincategory.edit',$cat->id)}}" class="btn btn-info waves-effect">

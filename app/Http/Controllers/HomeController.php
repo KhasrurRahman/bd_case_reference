@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\post;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
@@ -10,8 +11,8 @@ class HomeController extends Controller
 
     public function index()
     {
-        $categories = DB::table('categories')->pluck("name","id");
-        return view('welcome',compact('categories'));
+        $post = post::orderBy('created_at', 'desc')->paginate(5);
+        return view('welcome',compact('post'));
     }
 
     public function civillist($id) {
@@ -23,4 +24,14 @@ class HomeController extends Controller
         $act = DB::table("acts")->where("civil_id",$id)->pluck("name","id");
         return json_encode($act);
     }
+
+
+    public function aboutus()
+    {
+        return view("layouts.frontend.aboutus");
+    }
+
+
+
+
 }

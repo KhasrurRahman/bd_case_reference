@@ -6,9 +6,6 @@
 @endpush
 @section('content')
     <div class="container-fluid">
-        <div class="block-header">
-            <a class="btn btn-primary waves-effect" href="{{route('admin.section.create')}}"><i class="material-icons">add</i>Add New Section/Article/Rules</a>
-        </div>
 
         <!-- Exportable Table -->
         <div class="row clearfix">
@@ -16,8 +13,8 @@
                 <div class="card">
                     <div class="header">
                         <h2>
-                            Section/Article/Rules..
-                            <span class="badge bg-blue">{{$section->count()}}</span>
+                            Contact..
+                            <span class="badge bg-blue">{{$contact->count()}}</span>
                         </h2>
 
                     </div>
@@ -28,9 +25,9 @@
                                 <tr>
                                     <th>Id</th>
                                     <th>Name</th>
-                                    <th>Division</th>
-                                    <th>Civil</th>
-                                    <th>Act</th>
+                                    <th>Email</th>
+                                    <th>Phone</th>
+                                    <th>Message</th>
                                     <th>Action</th>
 
                                 </tr>
@@ -39,30 +36,26 @@
                                 <tr>
                                     <th>Id</th>
                                     <th>Name</th>
-                                    <th>Division</th>
-                                    <th>Civil</th>
-                                    <th>Act</th>
+                                    <th>Email</th>
+                                    <th>Phone</th>
+                                    <th>Message</th>
                                     <th>Action</th>
-
                                 </tr>
                                 </tfoot>
                                 <tbody>
-                                @foreach($section as $key=>$sections)
+                                @foreach($contact as $key=>$sections)
                                     <tr>
                                         <td>{{$key+1}}</td>
                                         <td>{{$sections->name}}</td>
-                                        <td>{{$sections->act->civil->category->name}}</td>
-                                        <td>{{$sections->act->civil->civil_name}}</td>
-                                        <td>{{$sections->act->name}}</td>
+                                        <td>{{$sections->email}}</td>
+                                        <td>{{$sections->phone}}</td>
+                                        <td>{{$sections->message}}</td>
                                         <td class="text-center">
-                                            <a href="{{route('admin.section.edit',$sections->id)}}" class="btn btn-info waves-effect">
-                                                <i class="material-icons">edit</i>
-                                            </a>
 
                                             <button class="btn btn-danger waves-effect" type="button" onclick="deletetag({{$sections->id}})">
                                                 <i class="material-icons">delete</i>
                                             </button>
-                                            <form id="delete-form-{{$sections->id}}" action="{{route('admin.section.destroy',$sections->id)}}" method="post" style="display: none">
+                                            <form id="delete-form-{{$sections->id}}" action="{{route('admin.contact.destroy',$sections->id)}}" method="post" style="display: none">
                                                 @csrf
                                                 @method('DELETE')
 

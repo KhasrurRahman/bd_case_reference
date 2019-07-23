@@ -43,7 +43,7 @@ class sectionController extends Controller
     public function store(Request $request)
     {
         $this->validate($request,[
-            'name'=>'required|unique:sections,name',
+            'name'=>'required',
             'act_id'=>'required'
         ]);
 
@@ -97,7 +97,7 @@ class sectionController extends Controller
         $section = section::find($id);
         $section->name = $request->name;
         $section->act_id = $request->act_id;
-        $section->save();
+        $section->update();
 
         Toastr::success('Section/Article/Rules updated successfully','Success');
         return redirect()->route('admin.section.index');

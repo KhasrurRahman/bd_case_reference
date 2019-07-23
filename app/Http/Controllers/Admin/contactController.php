@@ -2,13 +2,12 @@
 
 namespace App\Http\Controllers\Admin;
 
-use App\category;
-use App\civil;
+use App\contact;
 use Brian2694\Toastr\Facades\Toastr;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 
-class CivilController extends Controller
+class contactController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -17,8 +16,8 @@ class CivilController extends Controller
      */
     public function index()
     {
-        $civil = civil::get();
-        return view('admin.civil.index',compact('civil'));
+        $contact = contact::all();
+        return view('admin.contact.index',compact('contact'));
     }
 
     /**
@@ -28,9 +27,7 @@ class CivilController extends Controller
      */
     public function create()
     {
-        $civil = civil::get();
-        $category = category::get();
-        return view('admin.civil.create',compact('civil','category'));
+        //
     }
 
     /**
@@ -41,18 +38,7 @@ class CivilController extends Controller
      */
     public function store(Request $request)
     {
-        $this->validate($request,[
-            'civil_name' => 'required',
-            'category_id' => 'required',
-        ]);
-
-        $civil = new civil();
-        $civil->civil_name = $request->civil_name;
-        $civil->category_id = $request->category_id;
-        $civil->save();
-
-        Toastr::success('Civil,Criminal... add successfully','Success');
-        return redirect()->route('admin.civil.index');
+        //
     }
 
     /**
@@ -74,9 +60,7 @@ class CivilController extends Controller
      */
     public function edit($id)
     {
-        $civil = civil::all();
-        $category = category::all();
-        return view('admin.civil.edit',compact('civil','category'));
+        //
     }
 
     /**
@@ -88,19 +72,7 @@ class CivilController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $this->validate($request,[
-            'civil_name' => 'required',
-            'category_id' => 'required',
-        ]);
-
-        $civil = civil::find($id);
-        $civil->civil_name = $request->civil_name;
-        $civil->category_id = $request->category_id;
-        $civil->update();
-
-        Toastr::success('Civil,Criminal... updated successfully','Success');
-        return redirect()->route('admin.civil.index');
-
+        //
     }
 
     /**
@@ -111,10 +83,9 @@ class CivilController extends Controller
      */
     public function destroy($id)
     {
-        civil::find($id)->delete();
+        contact::find($id)->delete();
 
-        Toastr::success('Civil,Criminal... deleted successfully','Success');
+        Toastr::success('contact deleted successfully','Success');
         return redirect()->back();
-
     }
 }

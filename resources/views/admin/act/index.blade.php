@@ -28,8 +28,8 @@
                                 <tr>
                                     <th>Id</th>
                                     <th>Name</th>
-                                    <th>Connected on</th>
-                                    <th>Updated At</th>
+                                    <th>Division</th>
+                                    <th>Civil</th>
                                     <th>Action</th>
 
                                 </tr>
@@ -38,9 +38,10 @@
                                 <tr>
                                     <th>Id</th>
                                     <th>Name</th>
-                                    <th>Connected on</th>
-                                    <th>Updated At</th>
+                                    <th>Division</th>
+                                    <th>Civil</th>
                                     <th>Action</th>
+
                                 </tr>
                                 </tfoot>
                                 <tbody>
@@ -48,8 +49,9 @@
                                     <tr>
                                         <td>{{$key+1}}</td>
                                         <td>{{$acts->name}}</td>
+                                        <td>{{$acts->civil->category->name}}</td>
                                         <td>{{$acts->civil->civil_name}}</td>
-                                        <td>{{$acts->created_at->toFormattedDateString()}}</td>
+
                                         <td class="text-center">
                                             <a href="{{route('admin.act.edit',$acts->id)}}" class="btn btn-info waves-effect">
                                                 <i class="material-icons">edit</i>

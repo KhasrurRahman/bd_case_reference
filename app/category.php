@@ -19,4 +19,9 @@ class category extends Model
     {
         return $this->hasMany(section::class,'act_id');
     }
+
+    public function post()
+    {
+        return $this->hasMany(post::class,'section_id');
+    }
 }

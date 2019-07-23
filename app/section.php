@@ -6,6 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class section extends Model
 {
+    protected $table = 'sections';
     public function act()
     {
         return $this->belongsTo(act::class,'act_id');

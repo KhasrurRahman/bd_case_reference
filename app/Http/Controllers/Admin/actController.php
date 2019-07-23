@@ -42,7 +42,7 @@ class actController extends Controller
     public function store(Request $request)
     {
         $this->validate($request,[
-           'name'=>'required|unique:acts,name',
+           'name'=>'required',
            'civil_id'=>'required'
         ]);
 
@@ -96,7 +96,7 @@ class actController extends Controller
         $act = act::find($id);
         $act->name = $request->name;
         $act->civil_id = $request->civil_id;
-        $act->save();
+        $act->update();
 
         Toastr::success('Act/Law/Rules Updated successfully','Success');
         return redirect()->route('admin.act.index');

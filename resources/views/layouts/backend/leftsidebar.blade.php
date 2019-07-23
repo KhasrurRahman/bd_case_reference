@@ -46,28 +46,43 @@
                 <li class="{{Request::is('admin/maincategory*')?'active': ''}}">
                     <a href="{{route('admin.maincategory.index')}}">
                         <i class="material-icons">label</i>
-                        <span>Applicate and High Court Division</span>
+                        <span>Appellate Division or High Court Division</span>
                     </a>
                 </li>
 
                 <li class="{{Request::is('admin/civil*')?'active': ''}}">
                     <a href="{{route('admin.civil.index')}}">
                         <i class="material-icons">label</i>
-                        <span>Civil,Criminal...</span>
+                        <span>Civil or Criminal</span>
                     </a>
                 </li>
 
                 <li class="{{Request::is('admin/act*')?'active': ''}}">
                     <a href="{{route('admin.act.index')}}">
                         <i class="material-icons">label</i>
-                        <span>Act/Law/Rules</span>
+                        <span>Act or Law or Rules</span>
                     </a>
                 </li>
 
                 <li class="{{Request::is('admin/section*')?'active': ''}}">
                     <a href="{{route('admin.section.index')}}">
                         <i class="material-icons">label</i>
-                        <span>Section/Article/Rules</span>
+                        <span>Section or Article or Rule</span>
+                    </a>
+                </li>
+
+                <li class="{{Request::is('admin/post*')?'active': ''}}">
+                    <a href="{{route('admin.post.index')}}">
+                        <i class="material-icons">label</i>
+                        <span>All Post</span>
+                    </a>
+                </li>
+
+
+                <li class="{{Request::is('admin/contact*')?'active': ''}}">
+                    <a href="{{route('admin.contact.index')}}">
+                        <i class="material-icons">label</i>
+                        <span>All contact</span>
                     </a>
                 </li>
 

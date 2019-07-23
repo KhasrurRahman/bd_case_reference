@@ -28,7 +28,7 @@
                                 <tr>
                                     <th>Id</th>
                                     <th>Name</th>
-                                    <th>Connected on</th>
+                                    <th>Division</th>
                                     <th>Updated At</th>
                                     <th>Action</th>
 
@@ -38,9 +38,10 @@
                                 <tr>
                                     <th>Id</th>
                                     <th>Name</th>
-                                    <th>Connected on</th>
+                                    <th>Division</th>
                                     <th>Updated At</th>
                                     <th>Action</th>
+
                                 </tr>
                                 </tfoot>
                                 <tbody>

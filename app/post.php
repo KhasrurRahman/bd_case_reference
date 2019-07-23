@@ -10,4 +10,9 @@ class post extends Model
     {
         return $this->belongsTo(section::class,'section_id');
     }
+
+    public function category()
+    {
+        return $this->belongsTo(category::class,'section_id');
+    }
 }

@@ -17,8 +17,8 @@
                         <i class="material-icons">playlist_add_check</i>
                     </div>
                     <div class="content">
-                        <div class="text">NEW TASKS</div>
-                        <div class="number count-to" data-from="0" data-to="125" data-speed="15" data-fresh-interval="20"></div>
+                        <div class="text">Total post</div>
+                        <div class="number count-to" data-from="0" data-to="{{count(\App\post::all())}}" data-speed="15" data-fresh-interval="20"></div>
                     </div>
                 </div>
             </div>
@@ -28,8 +28,8 @@
                         <i class="material-icons">help</i>
                     </div>
                     <div class="content">
-                        <div class="text">NEW TICKETS</div>
-                        <div class="number count-to" data-from="0" data-to="257" data-speed="1000" data-fresh-interval="20"></div>
+                        <div class="text">Total section</div>
+                        <div class="number count-to" data-from="0" data-to="{{count(\App\section::all())}}" data-speed="1000" data-fresh-interval="20"></div>
                     </div>
                 </div>
             </div>
@@ -39,8 +39,8 @@
                         <i class="material-icons">forum</i>
                     </div>
                     <div class="content">
-                        <div class="text">NEW COMMENTS</div>
-                        <div class="number count-to" data-from="0" data-to="243" data-speed="1000" data-fresh-interval="20"></div>
+                        <div class="text">Total act</div>
+                        <div class="number count-to" data-from="0" data-to="{{count(\App\act::all())}}" data-speed="1000" data-fresh-interval="20"></div>
                     </div>
                 </div>
             </div>
@@ -50,8 +50,8 @@
                         <i class="material-icons">person_add</i>
                     </div>
                     <div class="content">
-                        <div class="text">NEW VISITORS</div>
-                        <div class="number count-to" data-from="0" data-to="1225" data-speed="1000" data-fresh-interval="20"></div>
+                        <div class="text">Total civil</div>
+                        <div class="number count-to" data-from="0" data-to="{{count(\App\civil::all())}}" data-speed="1000" data-fresh-interval="20"></div>
                     </div>
                 </div>
             </div>
