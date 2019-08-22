@@ -1,8 +1,8 @@
 @extends('layouts.backend.app')
 @section('title','Create Act/law')
 @push('css')
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.6-rc.0/css/select2.min.css" rel="stylesheet" />
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-3-typeahead/4.0.1/bootstrap3-typeahead.min.js"></script>
+    <link href="{{asset('public/assets/backend/css/select2.css')}}" rel="stylesheet">
+
 @endpush
 @section('content')
     <div class="container-fluid">
@@ -144,10 +144,6 @@
 
     </script>
 
-
-
-
-    {{--<script src="//cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.6.3/js/bootstrap-select.min.js"></script>--}}
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.6-rc.0/js/select2.min.js"></script>
+    <script src="{{asset('public/assets/backend/js/select2.js')}}"></script>
 
 @endpush

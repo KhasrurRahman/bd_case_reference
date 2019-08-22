@@ -94,13 +94,21 @@ class sectionController extends Controller
             'act_id'=>'required'
         ]);
 
+
+        $old_act_id = section::find($id)->act_id;
         $section = section::find($id);
         $section->name = $request->name;
-        $section->act_id = $request->act_id;
+        if ($request->act_id == '1st select civil'){
+            $section->act_id = $old_act_id;
+        }else{
+
+            $section->act_id = $request->act_id;
+        }
+
         $section->update();
 
         Toastr::success('Section/Article/Rules updated successfully','Success');
-        return redirect()->route('admin.section.index');
+        return redirect()->back();
     }
 
     /**

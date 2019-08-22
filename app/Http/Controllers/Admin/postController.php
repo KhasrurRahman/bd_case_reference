@@ -46,7 +46,6 @@ class postController extends Controller
      */
     public function store(Request $request)
     {
-
         $this->validate($request,[
 
             'section_id'=>'required',
@@ -115,26 +114,48 @@ class postController extends Controller
         $this->validate($request,[
            'title'=>'required',
            'body'=>'required',
-            'category'=>'required',
             'civil'=>'required',
             'act'=>'required',
         ]);
 
 
         $post = post::find($id);
+        $old_category = $post->category;
+        $old_civil = $post->civil;
+        $old_act = $post->act;
+        $old_section = $post->section;
+        $old_section_id = $post->section_id;
+
+
         $post->title = $request->title;
         $post->reference = $request->reference;
-        $post->section_id = $request->section_id;
         $post->body = $request->body;
-        $post->category = $request->category;
-        $post->civil = $request->civil;
-        $post->act = $request->act;
-        $section = section::find($request->section_id)->name;
-        $post->section = $section;
+
+        if ($request->category == null)
+        {
+            $post->category = $old_category;
+            $post->civil = $old_civil;
+            $post->act = $old_act;
+            $section = $old_section;
+            $post->section = $section;
+            $post->section_id = $old_section_id;
+        }else{
+            $post->category = category::find($request->category)->name;
+            $post->civil = civil::find($request->civil)->civil_name;
+            $post->act = act::find($request->act)->name;
+            $section = section::find($request->section_id)->name;
+            $post->section = $section;
+            $post->section_id = $request->section_id;
+        }
+
+
         $post->update();
 
         Toastr::success('post updated successfully','Success');
-        return redirect()->route('admin.post.index');
+        return redirect()->back();
+
+
+
 
     }
 

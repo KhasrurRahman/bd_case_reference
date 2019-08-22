@@ -24,6 +24,8 @@
                         <li><a href="#"><i class="fa fa-google-plus"></i></a></li>
                         <li><a href="#"><i class="fa fa-twitter"></i></a></li>
                     </ul>
+                    <p>Total Visitor:</p>
+                    <div id="sfc83fdqrqkbd4p7b9c2gfjpqqeczeued2h"></div>
                 </div>
             </div>
         </div>
@@ -74,6 +76,12 @@
         document.getElementById("rightMenu").style.display = "none";
     }
 </script>
+
+
+<script type="text/javascript" src="https://counter7.wheredoyoucomefrom.ovh/private/counter.js?c=83fdqrqkbd4p7b9c2gfjpqqeczeued2h&down=async" async></script>
+<noscript><a href="https://www.freecounterstat.com" title="website counter"><img src="https://counter7.wheredoyoucomefrom.ovh/private/freecounterstat.php?c=83fdqrqkbd4p7b9c2gfjpqqeczeued2h" border="0" title="website counter" alt="website counter"></a></noscript>
+
+
 </div>
 </body>
 

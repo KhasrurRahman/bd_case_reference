@@ -56,13 +56,13 @@
                                 @foreach($post as $key=>$posts)
                                     <tr>
                                         <td>{{$key+1}}</td>
-                                        <td>{!! html_entity_decode(str_limit($posts->title,40))!!}</td>
+                                        <td>{!! html_entity_decode($posts->title)!!}</td>
                                         <td>{{$posts->category}}</td>
                                         <td>{{$posts->civil}}</td>
                                         <td>{{$posts->act}}</td>
                                         <td>{{$posts->section}}</td>
                                         <td>{{$posts->reference}}</td>
-                                        <td>{!! html_entity_decode(str_limit($posts->body,50)) !!}</td>
+                                        <td>{!! html_entity_decode($posts->body) !!}</td>
                                         <td class="text-center">
                                             <a href="{{route('admin.post.edit',$posts->id)}}" class="btn btn-info waves-effect">
                                                 <i class="material-icons">edit</i>
@@ -109,7 +109,7 @@
     <script src="{{asset('public/assets/backend/plugins/jquery-datatable/extensions/export/buttons.html5.min.js')}}"></script>
     <script src="{{asset('public/assets/backend/plugins/jquery-datatable/extensions/export/buttons.print.min.js')}}"></script>
     <script src="{{asset('public/assets/backend/js/pages/tables/jquery-datatable.js')}}"></script>
-    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@7.28.11/dist/sweetalert2.all.min.js"></script>
+    <script src="{{asset('public/assets/backend/js/select2.js')}}"></script>
 
     <script type="text/javascript">
         function deletetag(id) {

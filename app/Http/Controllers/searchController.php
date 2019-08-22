@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\act;
 use App\category;
+use App\civil;
 use App\post;
 use App\section;
 use Brian2694\Toastr\Facades\Toastr;
@@ -46,11 +48,24 @@ class searchController extends Controller
     public function search2()
     {
 
-        $search = Input::get('section_id');
-        $post = post::all();
+        $category = Input::get('category');
+        $category_name = category::find($category)->name;
+        $civil = Input::get('civil');
+        $civil_name = civil::find($civil)->civil_name;
+        $act = Input::get('act');
+        $act_name = act::find($act)->name;
+        $section = Input::get('section_id');
+        $section_name = section::find($section)->name;
 
-        $result = post::where('section_id','like','%'.$search.'%')
-            ->orderBy('created_at', 'desc')->paginate(5);
+//        $post = post::all();
+
+        $result = post::where('category','=', $category_name)
+            ->Where('civil','=',$civil_name)
+            ->Where('act','=',$act_name)
+            ->Where('section','=',$section_name)
+            ->orderBy('created_at', 'desc')->paginate(500000);
+
+//            echo $category_name .'->' .$civil_name .'->'.$act_name .'->'.$section_name;
 
 
         if ($result->isEmpty())
@@ -59,8 +74,10 @@ class searchController extends Controller
             return redirect()->back();
         }
         else{
-            return view('layouts.search',compact('result','search'));
+            return view('layouts.search',compact('result'));
         }
+
+
 
     }
 

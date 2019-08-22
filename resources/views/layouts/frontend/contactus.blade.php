@@ -2,7 +2,7 @@
 @section('title','contact us')
 
 @push('css')
-    <link rel="stylesheet" href="https://cdn.bootcss.com/toastr.js/latest/css/toastr.min.css">
+    <link href="{{asset('public/assets/fontend/css/toastr.min.css')}}" rel="stylesheet">
 @endpush
 @section('content')
 
@@ -81,7 +81,7 @@
 
 
 @push('js')
-    <script src="http://cdn.bootcss.com/toastr.js/latest/js/toastr.min.js"></script>
+    <script src="{{asset('public/assets/fontend/js/toastr.min.js')}}"></script>
     {!! Toastr::message() !!}
 
     <script>

@@ -43,39 +43,97 @@
                     </a>
                 </li>
 
+
                 <li class="{{Request::is('admin/maincategory*')?'active': ''}}">
-                    <a href="{{route('admin.maincategory.index')}}">
+                    <a href="javascript:void(0);" class="menu-toggle waves-effect waves-block">
                         <i class="material-icons">label</i>
                         <span>Appellate Division or High Court Division</span>
                     </a>
+                    <ul class="ml-menu" style="display: none;">
+                        <li>
+                            <a href="{{route('admin.maincategory.index')}}" class=" waves-effect waves-block">All Appellate Division or High Court Division
+                            </a>
+                        </li>
+
+                        <li>
+                            <a href="{{route('admin.maincategory.create')}}" class=" waves-effect waves-block">create Appellate Division or High Court Division
+                            </a>
+                        </li>
+                    </ul>
                 </li>
 
+
                 <li class="{{Request::is('admin/civil*')?'active': ''}}">
-                    <a href="{{route('admin.civil.index')}}">
+                    <a href="javascript:void(0);" class="menu-toggle waves-effect waves-block">
                         <i class="material-icons">label</i>
                         <span>Civil or Criminal</span>
                     </a>
+                    <ul class="ml-menu" style="display: none;">
+                        <li>
+                            <a href="{{route('admin.civil.index')}}" class=" waves-effect waves-block">All Civil or Criminal
+                            </a>
+                        </li>
+
+                        <li>
+                            <a href="{{route('admin.civil.create')}}" class=" waves-effect waves-block">create Civil or Criminal
+                            </a>
+                        </li>
+                    </ul>
                 </li>
 
                 <li class="{{Request::is('admin/act*')?'active': ''}}">
-                    <a href="{{route('admin.act.index')}}">
+                    <a href="javascript:void(0);" class="menu-toggle waves-effect waves-block">
                         <i class="material-icons">label</i>
-                        <span>Act or Law or Rules</span>
+                        <span>Act or Law or Rule</span>
                     </a>
+                    <ul class="ml-menu" style="display: none;">
+                        <li>
+                            <a href="{{route('admin.act.index')}}" class=" waves-effect waves-block">All Act or Law or Rule
+                            </a>
+                        </li>
+
+                        <li>
+                            <a href="{{route('admin.act.create')}}" class=" waves-effect waves-block">create Act or Law or Rule
+                            </a>
+                        </li>
+                    </ul>
                 </li>
 
                 <li class="{{Request::is('admin/section*')?'active': ''}}">
-                    <a href="{{route('admin.section.index')}}">
+                    <a href="javascript:void(0);" class="menu-toggle waves-effect waves-block">
                         <i class="material-icons">label</i>
                         <span>Section or Article or Rule</span>
                     </a>
+                    <ul class="ml-menu" style="display: none;">
+                        <li>
+                            <a href="{{route('admin.section.index')}}" class=" waves-effect waves-block">All Section or Article or Rule
+                            </a>
+                        </li>
+
+                        <li>
+                            <a href="{{route('admin.section.create')}}" class=" waves-effect waves-block">create Section or Article or Rule
+                            </a>
+                        </li>
+                    </ul>
                 </li>
 
+
                 <li class="{{Request::is('admin/post*')?'active': ''}}">
-                    <a href="{{route('admin.post.index')}}">
+                    <a href="javascript:void(0);" class="menu-toggle waves-effect waves-block">
                         <i class="material-icons">label</i>
-                        <span>All Post</span>
+                        <span>Post</span>
                     </a>
+                    <ul class="ml-menu" style="display: none;">
+                        <li>
+                            <a href="{{route('admin.post.index')}}" class=" waves-effect waves-block">All Post
+                            </a>
+                        </li>
+
+                        <li>
+                            <a href="{{route('admin.post.create')}}" class=" waves-effect waves-block">create Post
+                            </a>
+                        </li>
+                    </ul>
                 </li>
 
 

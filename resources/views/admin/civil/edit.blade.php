@@ -11,7 +11,7 @@
             @csrf
             @method('put')
             <div class="row clearfix">
-                <div class="col-lg-8 col-md-12 col-sm-12 col-xs-12">
+                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                     <div class="card">
                         <div class="header">
                             <h2>
@@ -29,7 +29,27 @@
                         </div>
                     </div>
                 </div>
-                <div class="col-lg-4 col-md-12 col-sm-12 col-xs-12">
+
+                <label class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                    <div class="card">
+                        <div class="header">
+                            <h2>
+                                Relation-
+
+                            </h2>
+                        </div>
+                        <div>
+                            <ol class="breadcrumb breadcrumb-bg-pink">
+                                <li><a href="javascript:void(0);"><i class="material-icons"></i> {{$civil->category->name}}</a></li>
+                                <li class="active"><i class="material-icons"></i>{{$civil->civil_name}}</li>
+                            </ol>
+                        </div>
+
+                    </div>
+                </label>
+
+
+                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                     <div class="card">
                         <div class="header">
                             <h2>

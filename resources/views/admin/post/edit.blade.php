@@ -1,7 +1,7 @@
 @extends('layouts.backend.app')
 @section('title','Create post')
 @push('css')
-    <link href="{{ asset('public/assets/backend/plugins/bootstrap-select/css/bootstrap-select.css') }}" rel="stylesheet" />
+    <link href="{{asset('public/assets/backend/css/select2.css')}}" rel="stylesheet">
 @endpush
 @section('content')
     <div class="container-fluid">
@@ -42,75 +42,73 @@
                     </div>
                 </div>
 
-                <label class="col-lg-3 col-md-3 col-sm-3 col-xs-3">
+                <label class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                     <div class="card">
                         <div class="header">
                             <h2>
-                                Select 1st  -->
+                                Relation-
 
                             </h2>
                         </div>
-                        <select name="category" class="form-control show-tick selectpicker" data-live-search="true">
-                            <option selected="selected" disabled>--1st select division--</option>
-                            @foreach ($category as $categorys)
-                                <option {{ $categorys->name == $post->category ? 'selected' : '' }} value="{{ $categorys->name }}"> {{ $categorys->name }}</option>
-                            @endforeach
-                        </select>
+                        <div>
+                            <ol class="breadcrumb breadcrumb-bg-pink">
+                                <li><a href="javascript:void(0);"><i class="material-icons"></i> {{$post->category}}</a></li>
+                                <li class="active"><i class="material-icons"></i>{{$post->civil}}</li>
+                                <li class="active"><i class="material-icons"></i>{{$post->act}}</li>
+                                <li class="active"><i class="material-icons"></i>{{$post->section}}</li>
+                            </ol>
+                        </div>
 
                     </div>
                 </label>
 
-                <label class="col-lg-3 col-md-3 col-sm-3 col-xs-3">
-                    <div class="card">
-                        <div class="header">
-                            <h2>
-                                Select 2nd  -->
 
-                            </h2>
-                        </div>
-                        <select name="civil" class="form-control show-tick selectpicker" data-live-search="true">
-                            <option selected="selected" disabled>--1st select civil--</option>
-                            @foreach ($civil as $categorys)
-                                <option {{ $categorys->civil_name == $post->civil ? 'selected' : '' }} value="{{ $categorys->civil_name }}"> {{ $categorys->civil_name }}</option>
-                            @endforeach
-                        </select>
 
-                    </div>
-                </label>
+                <div class="row clearfix">
 
-                <label class="col-lg-3 col-md-3 col-sm-3 col-xs-3">
-                    <div class="card">
-                        <div class="header">
-                            <h2>
-                                Select 3rd  -->
+                    <section class="bottom-search-form">
 
-                            </h2>
-                        </div>
-                        <select name="act" class="form-control show-tick selectpicker" data-live-search="true">
-                            <option selected="selected" disabled>--1st select act--</option>
-                            @foreach ($act as $categorys)
-                                <option {{ $categorys->name == $post->act ? 'selected' : '' }} value="{{ $categorys->name }}"> {{ $categorys->name }}</option>
-                            @endforeach
-                        </select>
 
-                    </div>
-                </label>
 
-                <label class="col-lg-3 col-md-3 col-sm-3 col-xs-3">
-                    <div class="card">
-                        <div class="header">
-                            <h2>
-                                Selected section
-                            </h2>
-                        </div>
-                        <select name="section_id" class="form-control show-tick selectpicker" data-live-search="true" >
-                        @foreach($section as $sections)
-                                <option {{ $sections->id == $post->section_id ? 'selected' : '' }} value="{{$sections->id}}">{{$sections->name}} </option>
-                        @endforeach
-                        </select>
 
-                    </div>
-                </label>
+
+                        @php
+                            $categories = DB::table('categories')->pluck("name","id");
+                        @endphp
+
+
+                        <label class="col-md-6 col-sm-6">
+                            <select class="form-control js-example-basic-multiple" name="category">
+                                <option disabled="true" selected="true">1st select This</option>
+                                @foreach ($categories as $category => $value)
+                                    <option value="{{ $category }}"> {{ $value }}</option>
+                                @endforeach
+                            </select>
+                        </label>
+
+                        <label class="col-md-6 col-sm-6">
+                            <select class="form-control js-example-basic-multiple" name="civil">
+                                <option>1st select Division</option>
+
+                            </select>
+                        </label>
+
+                        <label class="col-md-6 col-sm-6">
+                            <select class="form-control js-example-basic-multiple" name="act">
+                                <option>1st select civil</option>
+
+                            </select>
+                        </label>
+
+                        <label class="col-md-6 col-sm-6">
+                            <select class="form-control js-example-basic-multiple" name="section_id">
+                                <option>1st select Act</option>
+                            </select>
+                        </label>
+
+
+
+                    </section>
 
 
                 <div class="col-lg-3">
@@ -176,8 +174,142 @@
         });
     </script>
 
+    <script type="text/javascript">
+        $(document).ready(function() {
+
+            $('select[name="category"]').on('change', function(){
+                var categoryId = $(this).val();
+
+                if(categoryId) {
+                    $.ajax({
+                        url: '/co/civillist/'+categoryId,
+                        type:"GET",
+                        dataType:"json",
+                        beforeSend: function(){
+                            $('#loader').css("visibility", "visible");
+
+
+                        },
+
+                        success:function(data) {
+
+                            $('select[name="civil"]').empty();
+                            $('select[name="civil"]').append('<option value="0" disabled="true" selected="true">Select Civil</option>');
+                            $.each(data, function(key, value){
+
+                                $('select[name="civil"]').append('<option value="'+ value.id +'">' + value.civil_name + '</option>');
+                                console.log(value);
+
+                            });
+                        },
+                        complete: function(){
+                            $('#loader').css("visibility", "hidden");
 
 
 
-    <script src="{{asset('public/assets/backend/plugins/bootstrap-select/js/bootstrap-select.js')}}"></script>
+                        }
+                    });
+                } else {
+                    $('select[name="civil"]').empty();
+
+                }
+
+            });
+
+            $('select[name="civil"]').on('change', function(){
+                var actId = $(this).val();
+                if(actId) {
+                    $.ajax({
+                        url: '/co/actlist/'+actId,
+                        type:"GET",
+                        dataType:"json",
+                        beforeSend: function(){
+                            $('#loader').css("visibility", "visible");
+
+
+                        },
+
+                        success:function(data) {
+
+                            $('select[name="act"]').empty();
+                            $('select[name="act"]').append('<option value="0" disabled="true" selected="true">Select act</option>');
+
+                            $.each(data, function(key, value){
+
+                                $('select[name="act"]').append('<option value="'+ value.id +'">' + value.name + '</option>');
+
+                            });
+                        },
+                        complete: function(){
+                            $('#loader').css("visibility", "hidden");
+
+
+                        }
+                    });
+                } else {
+                    $('select[name="act"]').empty();
+                }
+
+            });
+
+
+
+            $('select[name="act"]').on('change', function(){
+                var sectionId = $(this).val();
+
+                if(sectionId) {
+                    $.ajax({
+                        url: '/co/sectionlist/'+sectionId,
+                        type:"GET",
+                        dataType:"json",
+                        beforeSend: function(){
+                            $('#loader').css("visibility", "visible");
+
+
+                        },
+
+                        success:function(data) {
+
+                            $('select[name="section_id"]').empty();
+                            $('select[name="section_id"]').append('<option value="0" disabled="true" selected="true">Select section</option>');
+
+                            $.each(data, function(key, value){
+
+                                $('select[name="section_id"]').append('<option value="'+ value.id +'">' + value.name + '</option>');
+                                console.log(value.id)
+
+
+                            });
+                        },
+                        complete: function(){
+                            $('#loader').css("visibility", "hidden");
+
+
+                        }
+                    });
+                } else {
+                    $('select[name="section_id"]').empty();
+                }
+
+            });
+
+
+
+        });
+    </script>
+
+    <script>
+
+
+        $(document).ready(function() {
+            $('.js-example-basic-multiple').select2({tags: true});
+        });
+
+
+    </script>
+
+
+    <script src="{{asset('public/assets/backend/js/select2.js')}}"></script>
+
+
 @endpush

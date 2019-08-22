@@ -23,7 +23,11 @@
         <div class="container">
             <div class="col-md-12 col-sm-12">
 <div>
-    <p style="line-height: 46px;margin-bottom: 30px">
+    <p style="line-height: 30px;
+    margin-bottom: 30px;
+    text-align: center;
+    margin-top: -51px;
+    font-size: 15px;">
         <strong>bdcasereference.com</strong> is the first free online case reference in
         Bangladesh which helps to find specific case references or decisions of
         the Supreme Court of Bangladesh. The search box above is used to find

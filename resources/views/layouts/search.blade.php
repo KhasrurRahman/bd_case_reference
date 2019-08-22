@@ -3,7 +3,36 @@
 
 @push('css')
 <style>
+    .pagination li {
+        list-style-type: none;
+        float: left;
+        width: 40px;
+        height: 40px;
+        line-height:40px;
+        border: 1px solid #FFF;
+        background-color: cadetblue;
+        color: #FFF;
+        text-align: center;
+        cursor: pointer;
+        margin:0 5px;
+    }
 
+    .pagination li:hover {
+        background-color: #fff;
+        border: 1px solid #000;
+        color: #000
+    }
+
+    .pagination ul {
+        border: 0;
+        padding: 0;
+    }
+
+    .active {
+        background-color: #fff !important;
+        border: 1px solid #000 !important;
+        color: #000 !important;
+    }
 </style>
 
 @endpush
@@ -40,7 +69,7 @@
 
 
 @foreach($result as $res)
-            <a href="{{ url('single/'.$res->id) }}" class="item-click" id="body" >
+            <a href="{{ url('single/'.$res->id) }}" class="item-click post" id="body">
                 <article >
                     <div class="brows-resume">
                         <div class="row no-mrg">
@@ -69,7 +98,10 @@
             @endforeach
 
 
-    {{$result->links()}}
+    <div class="pagination"></div>
+
+
+    {{--{{$result->links()}}--}}
 
 
 
@@ -84,7 +116,12 @@
 @endsection
 
 @push('js')
-
-
+    <script src="{{asset('public/assets/fontend/js/paginate.js')}}"></script>
+<script>
+    $('.pagination').pagination({
+        itemsToPaginate: ".post",
+        activeClass: 'active'
+    });
+</script>
 
 @endpush

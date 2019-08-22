@@ -100,7 +100,7 @@
     <script src="{{asset('public/assets/backend/plugins/jquery-datatable/extensions/export/buttons.html5.min.js')}}"></script>
     <script src="{{asset('public/assets/backend/plugins/jquery-datatable/extensions/export/buttons.print.min.js')}}"></script>
     <script src="{{asset('public/assets/backend/js/pages/tables/jquery-datatable.js')}}"></script>
-    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@7.28.11/dist/sweetalert2.all.min.js"></script>
+    <script src="{{asset('public/assets/backend/js/select2.js')}}"></script>
 
     <script type="text/javascript">
         function deletetag(id) {

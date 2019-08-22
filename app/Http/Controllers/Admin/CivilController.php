@@ -74,7 +74,7 @@ class CivilController extends Controller
      */
     public function edit($id)
     {
-        $civil = civil::all();
+        $civil = civil::find($id);
         $category = category::all();
         return view('admin.civil.edit',compact('civil','category'));
     }

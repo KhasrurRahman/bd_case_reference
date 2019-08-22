@@ -92,14 +92,19 @@ class actController extends Controller
             'name' => 'required',
             'civil_id' => 'required',
         ]);
-
+        $old_civil_id = act::find($id)->civil_id;
         $act = act::find($id);
         $act->name = $request->name;
-        $act->civil_id = $request->civil_id;
+
+        if ($request->civil_id == '1st select Division'){
+            $act->civil_id = $old_civil_id;
+        }else{
+            $act->civil_id = $request->civil_id;
+        }
         $act->update();
 
         Toastr::success('Act/Law/Rules Updated successfully','Success');
-        return redirect()->route('admin.act.index');
+        return redirect()->back();
     }
 
     /**

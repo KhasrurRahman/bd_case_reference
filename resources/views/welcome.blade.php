@@ -1,5 +1,5 @@
 @extends('layouts.frontend.app')
-@section('title','home')
+@section('title','Home')
 
 @push('css')
 <style>
@@ -77,9 +77,59 @@
         width: 100%;
         vertical-align: middle;
     }
+
+    @media screen and (max-width: 450px) {
+        .select2-container--default .select2-selection--single {
+            width: 300px;
+            font-size: 10px;
+        }
+            .select2-container--default .select2-results__option{
+                font-size: 10px;
+                color: black;
+            }
+        }
+    #fvpp-blackout {
+        display: none;
+        z-index: 499;
+        position: fixed;
+        width: 100%;
+        height: 100%;
+        top: 0;
+        left: 0;
+        background: #000;
+        opacity: 0.5;
+    }
+
+    #my-welcome-message {
+        display: none;
+        z-index: 500;
+        position: fixed;
+        width: 71%;
+        left: 14%;
+        top: 20%;
+        padding: 20px 2%;
+        font-family: Calibri, Arial, sans-serif;
+        background: #FFF;
+    }
+
+    #fvpp-close {
+        position: absolute;
+        top: 10px;
+        right: 20px;
+        cursor: pointer;
+    }
+
+    #fvpp-dialog h2 {
+        font-size: 2em;
+        margin: 0;
+    }
+
+    #fvpp-dialog p { margin: 0; }
 </style>
-<link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.6-rc.0/css/select2.min.css" rel="stylesheet" />
+<link href="{{asset('public/assets/backend/css/select2.css')}}" rel="stylesheet">
+<link href="{{asset('public/assets/fontend/css/toastr.min.css')}}" rel="stylesheet">
 <link href="{{asset('public/assets/backend/plugins/jquery-datatable/skin/bootstrap/css/dataTables.bootstrap.css')}}" rel="stylesheet">
+
 
 
 @endpush
@@ -91,7 +141,7 @@
             <div class="banner-caption">
                 <div class="col-md-12 col-sm-12 banner-text">
                     <h1>BD CASE REFERENCE</h1>
-                    <h3 style="color: white;margin-top: 10px">(website under testing)</h3>
+                    <h3 style="color: white;margin-top: 10px">(Beta Version)</h3>
                     <form class="form-horizontal" action="{{route('search')}}" method="get">
                         @csrf
                         <div class="col-md-10 no-padd">
@@ -125,7 +175,7 @@
                 @endphp
 
 
-                <label class="col-md-6 col-sm-12">
+                <label class="col-md-6 col-sm-12 col-xsm-12">
                     <select class="form-control js-example-basic-multiple" name="category">
                         <option disabled="true" selected="true">Division</option>
                         @foreach ($categories as $category => $value)
@@ -173,12 +223,12 @@
         <div class="container">
 
             @foreach($post as $res)
-                <a href="{{ url('single/'.$res->id) }}" class="item-click" id="body" >
+                <a href="{{ url('single/'.$res->id) }}" class="item-click post" id="body" >
                     <article >
                         <div class="brows-resume">
                             <div class="row">
                                 <h5>{!! html_entity_decode($res->title) !!}</h5>
-                                {!! html_entity_decode(str_limit($res->body,250)) !!}
+                                {!! html_entity_decode($res->body) !!}
 
                             </div>
                             <div class="row extra-mrg row-skill">
@@ -206,34 +256,24 @@
 
 
 
+
+
+                <div id="my-welcome-message">
+                    <h2>Welcome to my site</h2>
+                    <p>The first free online case reference in Bangladesh which helps to find specific case references or decisions of the Supreme Court of Bangladesh.</p>
+                </div>
+
+
+
+
+
+
+
+
         </div>
     </section>
     <!-- Browse Resume List End -->
 
-
-
-
-   {{--starting banner--}}
-    {{--<div id="enquirypopup" class="modal fade in" role="dialog" style="display: block">--}}
-        {{--<div class="modal-dialog">--}}
-
-            {{--<!-- Modal content-->--}}
-            {{--<div class="modal-content row">--}}
-                {{--<div class="modal-header custom-modal-header">--}}
-                    {{--<button type="button" class="close" data-dismiss="modal">×</button>--}}
-                    {{--<h4 class="modal-title"></h4>--}}
-                {{--</div>--}}
-                {{--<div class="modal-body">--}}
-                    {{--<form name="info_form" class="form-inline" action="#" method="post">--}}
-
-                        {{--<h1 style="text-align: center">welcome to Our website</h1>--}}
-                    {{--</form>--}}
-                {{--</div>--}}
-
-            {{--</div>--}}
-
-        {{--</div>--}}
-    {{--</div>--}}
 @endsection
 
 @push('js')
@@ -358,53 +398,6 @@
 
 
 
-            // $('select[name="section_id"]').on('change', function(){
-            //     var postid = $(this).val();
-            //
-            //     if(postid) {
-            //         $.ajax({
-            //             url: 'postlist/'+postid,
-            //             type:"GET",
-            //             dataType:"json",
-            //             beforeSend: function(){
-            //                 $('#loader').css("visibility", "visible");
-            //
-            //
-            //             },
-            //
-            //             success:function(data) {
-            //
-            //                 $('select[name="post"]').empty();
-            //                 $('select[name="post"]').append('<option value="0" disabled="true" selected="true">Select post</option>');
-            //
-            //                 $.each(data, function(key, value){
-            //
-            //                     $('select[name="post"]').append('<option value="'+ value.id +'">' + value.body + '</option>');
-            //                     console.log(value.id,value.body)
-            //
-            //
-            //                 });
-            //             },
-            //             complete: function(){
-            //                 $('#loader').css("visibility", "hidden");
-            //
-            //
-            //             }
-            //         });
-            //     } else {
-            //         $('select[name="post"]').empty();
-            //     }
-            //
-            // });
-
-
-
-
-
-
-
-
-
         });
     </script>
 
@@ -426,19 +419,18 @@
 
 
 
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.6-rc.0/js/select2.min.js"></script>
-    <script src="http://cdn.bootcss.com/toastr.js/latest/js/toastr.min.js"></script>
+    <script src="{{asset('public/assets/backend/js/select2.js')}}"></script>
+    <script src="{{asset('public/assets/fontend/js/toastr.min.js')}}"></script>
     {!! Toastr::message() !!}
 
+
+    <script src="{{asset('public/assets/fontend/js/jquery.firstVisitPopup.js')}}"></script>
     <script>
-        @if($errors->any())
-        @foreach($errors->all() as $error)
-        toastr.error('{{ $error }}','Error',{
-            closeButton:true,
-            progressBar:true,
-        }       );
-        @endforeach
-        @endif
+
+        $('#my-welcome-message').firstVisitPopup({
+            cookieName : 'homepage',
+            showAgainSelector: '#show-message'
+        });
     </script>
 
 @endpush
